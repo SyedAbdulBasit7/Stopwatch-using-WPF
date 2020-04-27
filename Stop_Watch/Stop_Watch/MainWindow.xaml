@@ -1,0 +1,116 @@
+﻿<Window x:Class="Stop_Watch.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"  
+        xmlns:local="clr-namespace:Stop_Watch"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" >
+
+    <StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <!--#region Heading-->
+                <TextBlock Text="STOP WATCH" FontSize="30" FontWeight="Bold" Foreground="White" Background="#400080"
+                       Grid.Row="0" Grid.ColumnSpan="3" TextAlignment="Center"/>
+<!--#endregion-->
+
+            <!--#region First Progress bar -->
+                <materialDesign:Card Grid.Row="1" Grid.Column="0" Width="200" Margin="0 10 0 0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                 UniformCornerRadius="100"
+                                 >
+                <ProgressBar Grid.Row="1" Grid.Column="0"  Style="{StaticResource MaterialDesignCircularProgressBar}" 
+                         Value="0"
+                         Name="Hours"
+                         Width="200"
+                         Height="200"
+                         IsIndeterminate="True"           
+                             Background="#f2e6ff"
+                         >
+                </ProgressBar>
+            </materialDesign:Card>
+            <TextBlock x:Name="txt_hour" Margin="0 10 0 0" Grid.Row="1" Grid.Column="0" FontSize="60" Text="{Binding ElementName=Hours, Path=Value, StringFormat={}{0:00}}"
+                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" 
+                       VerticalAlignment="Center" Text=":" FontSize="60" FontWeight="Bold"/>
+            <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" 
+                       VerticalAlignment="Bottom" Text="Hours" FontSize="20"  Margin="0 0 0 20"/>
+            <!--#endregion-->
+
+            <!--#region Second Progress bar -->
+            <materialDesign:Card Width="200" Grid.Row="1" Grid.Column="1" Margin="0 10 0 0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                 UniformCornerRadius="100"
+                                 >
+                <ProgressBar Grid.Column="1" Grid.Row="1"  Style="{StaticResource MaterialDesignCircularProgressBar}" 
+                         Value="0"
+                         Name="Minutes"
+                         Width="200"
+                         Height="200"
+                         IsIndeterminate="True"
+                             Background="#f2e6ff"
+                         >
+                </ProgressBar>
+            </materialDesign:Card>
+
+            <TextBlock x:Name="txt_minute" Grid.Column="1" Margin="0 10 0 0" Grid.Row="1" FontSize="60" Text="{Binding ElementName=Minutes, Path=Value, StringFormat={}{0:00}}"
+                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="1" HorizontalAlignment="Right" 
+                       VerticalAlignment="Center" Text=":" Grid.Row="1" FontSize="60" FontWeight="Bold"/>
+            <TextBlock Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" 
+                       VerticalAlignment="Bottom" Text="Minutes" FontSize="20"  Margin="0 0 0 20"/>
+<!--#endregion-->
+
+            <!--#region Third Progress bar -->
+
+            <materialDesign:Card Grid.Column="2" Grid.Row="1" Width="200" Margin="0 10 0 0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                 UniformCornerRadius="100"
+                                 >
+                <ProgressBar Grid.Column="2" Grid.Row="1" Style="{StaticResource MaterialDesignCircularProgressBar}" 
+                         Value="0"
+                         Name="Secs"
+                         Width="200"
+                         Height="200"
+                         IsIndeterminate="True"  
+                             Background="#f2e6ff"
+                         >
+                </ProgressBar>
+            </materialDesign:Card>
+            <TextBlock x:Name="txt_second" Margin="0 10 0 0" Grid.Column="2" Grid.Row="1" FontSize="60" Text="{Binding ElementName=Secs, Path=Value, StringFormat={}{0:00}}"
+                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" 
+                       VerticalAlignment="Bottom" Text="Seconds" FontSize="20"  Margin="0 0 0 20"/>
+<!--#endregion-->
+
+            <!--#region Circular Buttons -->
+
+            <Button x:Name="play_button" Click="play_button_Click" Grid.Row="2" Grid.Column="0" Margin="60 60 0 60" Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
+                            ToolTip="MaterialDesignFloatingActionDarkButton">
+                <materialDesign:PackIcon Kind="Play" Height="24" Width="24" />
+            </Button>
+            <Button x:Name="pause_button" Click="pause_button_Click" Grid.Row="2" Grid.Column="1" Margin="0 60 0 60" Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
+                            ToolTip="MaterialDesignFloatingActionDarkButton">
+                <materialDesign:PackIcon Kind="Pause" Height="24" Width="24" />
+            </Button>
+            <Button x:Name="stop_button" Click="stop_button_Click" Grid.Row="2" Grid.Column="2" Margin="0 60 60 60" Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
+                            ToolTip="MaterialDesignFloatingActionDarkButton">
+                <materialDesign:PackIcon Kind="Stop" Height="24" Width="24" />
+            </Button>
+<!--#endregion-->
+
+        </Grid>
+
+    </StackPanel>
+    
+
+</Window>
